@@ -1,2 +1,2 @@
 # Quiz-Coding
-Create a timed quiz on JavaScript fundamentals that stores high scores
+Create a timed quiz on Soccer that stores high scores

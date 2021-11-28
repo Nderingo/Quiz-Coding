@@ -1,7 +1,23 @@
 * {
-background-color: aqua;
+background-color:lightskyblue;
 };
 
-.time {
-text-align: center;
+#game-start {
+    display: flex;
+
+align-content: center;
+}
+
+.free {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color:navy
+}
+
+button {
+    padding: 12px 5px;
+    display: flexbox;
+    align-items: center;
+    margin-left: 600px;
 }
