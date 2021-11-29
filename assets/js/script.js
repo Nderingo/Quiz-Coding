@@ -1,15 +1,36 @@
-var counter = document.getElementById("counter");
+// Select elelements by class
+var counterEl = document.querySelector(".counter");
+//  Select elements by id
+var homerEl = document.getElementById("homer");
 
-var homer = document.getElementById("homer");
+var secondsRemaining = 120;
 
-var questionsEl = document.getElementById("questions");
+function setTime() {
+// Set timer Interval
 
-var inputEl = document.getElementById("input-initials");
+var timerInterval = setInterval(function() {
+    secondsRemaining--;
+    counterEl.textContent = secondsRemaining + " seconds remaining ";
 
-var formEl = document.getElementById("form");
+    if(secondsRemaining === 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // Calls function to ask questions
+      sendMessage();
+    }
 
-var highscoresEl = document.getElementById("highscores");
+  }, 1000);
+}
+  setTime();
+  
+// var questionsEl = document.getElementById("questions");
 
-var highscoreListEl = document.getElementById("highscore-list");
+// var inputEl = document.getElementById("input-initials");
 
-var highscorePage = document.getElementById("highscore-page");
+// var formEl = document.getElementById("form");
+
+// var highscoresEl = document.getElementById("highscores");
+
+// var highscoreListEl = document.getElementById("highscore-list");
+
+// var highscorePage = document.getElementById("highscore-page");
