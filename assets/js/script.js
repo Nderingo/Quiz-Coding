@@ -25,7 +25,7 @@ var questionIndex = 0;
 var timerInterval;
 
 
-var questions = [
+var quizQuestions = [
   {
     question: "Which country is hosting the 2022 FIFA mens world world cup?",
     answers: ["USA","Canada","Germany","Qatar"],
@@ -33,13 +33,13 @@ var questions = [
   },
 
   {
-  question: "Which coutries will jointly hosting the 2026 FIFA mens World cup?",
+  question: "Which coutries will jointly host the 2026 FIFA mens World cup?",
   asnwers: ["USA,Canada,Mexico", "England,France, Sweden", "Ghana,Egypt,Morocco"],
   correctAnswer: "USA, Canada, Mexico",
   },
 
   {
-  question: "Which european soccer team has won most UEFA Champon League Titles",
+  question: "Which european soccer team has won the most UEFA Champions League Titles",
   answers: ["AC Milan", "Liverpool FC", "FC Barcelona", "Real Madrid"],
   correctAnswer: "Real Madrid",
   },
@@ -81,7 +81,7 @@ questionsEl.removeAttribute('class',)
 
 function displayCurrentQuestion() {
 
-  var currentQuestion = questions[questionIndex];
+  var currentQuestion = quizQuestions[questionIndex];
 
   questionTitle.textContent = currentQuestion.question;
 
@@ -103,17 +103,38 @@ currentQuestion.answers.forEach(function(choice){
 
 // Make quiz appear!!!
 
-function checkAnswers() {
-console.log(this.value)
 
 //check if the answer is correct. if wrong deduct time from seconds remaining
+function checkAnswers(event) {
+  var userAnswer = event.target.value;
+  currentQuestion = quizQuestions[questionIndex];
+  correctAnswer = currentQuestion["correctAnswer"];
+
+  //createn if statment that checks if there are more questions if more questions exist ask the displayCurrentQeustion function again
+
+//else the game is over
+
+  if(userAnswer===correctAnswer){
+    if(questionIndex===quizQuestions.length-1){
+     endGame();
+
+    }else{
+      questionIndex++;
+      displayCurrentQuestion();
+    }
+
+    }else {
+      secondsRemaining = secondsRemaining - 5;
+      document.getElementById("counter").innerHTML= secondsRemaining;
+    }
+  }
+// console.log(this.value)
+
+
 
 //make sure the questionIndex is increased by 1
 
-//createn if statment that checks if there are more questions if more questions exist ask the displayCurrentQeustion function again
 
-//else the game is over
-}
 
 //create a gameover function that hides the question element and displays the game over container. make sure it displays the final score 
 
