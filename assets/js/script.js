@@ -5,11 +5,14 @@ var homerEl = document.getElementById("homer");
 
 var questionsEl = document.getElementById("questions");
 
-var inputEl = document.getElementById("input-initials");
+var questionTitle = document.getElementById("questionTitle");
+
+var inputEl = document.getElementById("userInitials");
 
 var formEl = document.getElementById("form");
 
-var highscoresEl = document.getElementById("highscores");
+var choicesEl =document.getElementById("choices");
+
 
 var highscoreListEl = document.getElementById("highscore-list");
 
@@ -17,30 +20,34 @@ var highscorePage = document.getElementById("highscore-page");
 
 var secondsRemaining = 60;
 
+var questionIndex = 0;
+
+var timerInterval;
+
 
 var questions = [
   {
     question: "Which country is hosting the 2022 FIFA mens world world cup?",
     answers: ["USA","Canada","Germany","Qatar"],
-    correctAswer: "Qatar",
+    correctAnswer: "Qatar",
   },
 
   {
   question: "Which coutries will jointly hosting the 2026 FIFA mens World cup?",
   asnwers: ["USA,Canada,Mexico", "England,France, Sweden", "Ghana,Egypt,Morocco"],
-  correctAswer: "USA, Canada, Mexico",
+  correctAnswer: "USA, Canada, Mexico",
   },
 
   {
   question: "Which european soccer team has won most UEFA Champon League Titles",
   answers: ["AC Milan", "Liverpool FC", "FC Barcelona", "Real Madrid"],
-  correctAswer: "Real Madrid",
+  correctAnswer: "Real Madrid",
   },
 
   {
   question: "Which national soccer team won the last womens FIFA world cup competion?",
   answers: ["Canada","Japan","Russia","USA"],
-  correctAswer: "USA"
+  correctAnswer: "USA"
   }
 ]
 
@@ -48,14 +55,14 @@ var questions = [
 // TODO:THEN I am presented with another question
 
 
-// TODO:WHEN I click the start button
-document.getElementById("game-start").addEventListener("click", gameStart);
-
-
 function gameStart () {
+//hide homer container and show questions container
+homerEl.setAttribute('class', 'hidden');
+questionsEl.removeAttribute('class',)
+
     // Set timer Interval
     
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         secondsRemaining--;
         counterEl.textContent = secondsRemaining + " seconds remaining ";
     
@@ -66,8 +73,54 @@ function gameStart () {
     
       }, 1000);
 
-      for (let index=0; index<; index++)
+      counterEl.textContent = secondsRemaining + " seconds remaining ";
+
+      displayCurrentQuestion();
+  
 }
+
+function displayCurrentQuestion() {
+
+  var currentQuestion = questions[questionIndex];
+
+  questionTitle.textContent = currentQuestion.question;
+
+//dynamically create buttons base on the answer choices
+
+currentQuestion.answers.forEach(function(choice){
+  var btn =  document.createElement('button');
+
+  btn.setAttribute('value', choice);
+
+  btn. textContent = choice
+  
+  btn.onclick = checkAnswers
+
+  choicesEl.append(btn)
+})
+
+}
+
+// Make quiz appear!!!
+
+function checkAnswers() {
+console.log(this.value)
+
+//check if the answer is correct. if wrong deduct time from seconds remaining
+
+//make sure the questionIndex is increased by 1
+
+//createn if statment that checks if there are more questions if more questions exist ask the displayCurrentQeustion function again
+
+//else the game is over
+}
+
+//create a gameover function that hides the question element and displays the game over container. make sure it displays the final score 
+
+//create a function that grabs the value of the initals and the score and save them to local storage
+
+// TODO:WHEN I click the start button
+document.getElementById("game-start").addEventListener("click", gameStart);
 
 // 
 // 

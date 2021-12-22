@@ -31,3 +31,7 @@ button {
     font-weight: bolder;
     background-color:#f5fffa;
 }
+
+.hidden{
+    display: none;
+}
