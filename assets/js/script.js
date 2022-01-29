@@ -87,19 +87,33 @@ function displayCurrentQuestion() {
 
 //dynamically create buttons base on the answer choices
 
+// Update function so that aren't creating btn but just change the text contents of the btn
+
+// create a btns which is hidden
 currentQuestion.answers.forEach(function(choice){
   var btn =  document.createElement('button');
 
   btn.setAttribute('value', choice);
 
-  btn. textContent = choice
-  
-  btn.onclick = checkAnswers
-
-  choicesEl.append(btn)
-})
-
+  for (let index=0; index < answerKeys.length; index++) {        
+    var currentKey = answerKeys[index];
+    var buttonText = currentQuestion["answers"][currentKey];
+    var answer = document.createElement("button");
+    answer.classList.add("options-button");
+    answer.value = currentKey;
+    answer.innerHTML = buttonText;
+    quizBox.appendChild(answer);
+    answer.addEventListener("click", chooseAnswer);
+  }
 }
+//   btn. textContent = choice
+  
+//   btn.onclick = checkAnswers
+
+//   choicesEl.append(btn)
+// })
+
+// }
 
 // Make quiz appear!!!
 
@@ -110,25 +124,29 @@ function checkAnswers(event) {
   currentQuestion = quizQuestions[questionIndex];
   correctAnswer = currentQuestion["correctAnswer"];
 
-  //createn if statment that checks if there are more questions if more questions exist ask the displayCurrentQeustion function again
-
-//else the game is over
-
   if(userAnswer===correctAnswer){
+    
     if(questionIndex===quizQuestions.length-1){
      endGame();
 
     }else{
       questionIndex++;
       displayCurrentQuestion();
-    }
 
+        //if the user answers incorrectly, five seconds are deducted from the timer and score
+    } 
     }else {
-      secondsRemaining = secondsRemaining - 5;
-      document.getElementById("counter").innerHTML= secondsRemaining;
-    }
+    count = count - 5;
+    document.getElementById("timer").innerHTML = count;
   }
+}
+
+
+
+//else the game is over
 // console.log(this.value)
+
+//createn if statment that checks if there are more questions if more questions exist ask the displayCurrentQeustion function again
 
 
 
