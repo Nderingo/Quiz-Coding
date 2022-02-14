@@ -35,3 +35,19 @@ button {
 .hidden{
     display: none;
 }
+#quiz {
+    text-align: center;
+    /* display: none; */
+}
+
+.options-button {
+    font-family: sans-serif;
+	font-size: 20px;
+	background-color: #279;
+	color: #fff;
+	border: 1px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin: 10px;
+}
